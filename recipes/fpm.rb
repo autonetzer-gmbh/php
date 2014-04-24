@@ -19,12 +19,6 @@
 # limitations under the License.
 #
 
-pkgname = value_for_platform_family(
-    [ 'rhel', 'fedora' ] => 'php-fpm',
-    'debian' => 'php5-fpm'
-)
-
-package pkgname
 
 # This deletes the default FPM profile. Please use the fpm LWRP to define FPM pools
 file "#{node['php']['fpm_pool_dir']}/www.conf" do
