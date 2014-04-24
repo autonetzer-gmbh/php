@@ -18,15 +18,11 @@ yum_repository 'remi' do
 end
 
 # install packages from remi
-%w{php php-pear php-mbstring php-xml php-devel php-gd php-fpm}.each do |pkg|
-    package pkg do
-        options "--enablerepo=remi-php55,remi"
-        action :install
-    end
+node['php']['packages'].each do |pkg|
+  package pkg do
+      options "--enablerepo=remi-php55,remi"
+      action :install
+  end
 end
 
-#node['php']['packages'].each do |pkg|
-#    package pkg do
-#      action :install
-#    end
-#end
+include_recipe "php::ini"
